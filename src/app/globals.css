@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+div,
+h1,
+h2,
+p,
+section,
+audio {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 24px;
+}
+
+.container {
+  height: 100vh;
+  /* overflow: hidden; */
+}
+
+.intro {
+  left: 50%;
+  opacity: 0;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  z-index: 200;
+  overflow: hidden;
+}
+
+.intro p {
+  color: rgb(75, 213, 238);
+  font-size: 1.25rem;
+  overflow: hidden;
+}
+
+.intro,
+.title {
+  left: 50%;
+  opacity: 0;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  z-index: 200;
+  font-family: var(--font-saira-extra-condensed);
+}
+
+.title {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 18rem;
+}
+
+.container:before {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 0) 40%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  bottom: 0;
+  content: " ";
+  left: 0;
+  right: 0;
+  position: absolute;
+  top: 250px;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.crawl {
+  font-size: 300%;
+  bottom: 0;
+  height: 80rem;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%) perspective(300px) rotateX(28deg);
+  transform-origin: 50% 100%;
+  width: 90%;
+}
+
+.content {
+  position: absolute;
+  top: 100%;
+}
+
+.episode-number {
+  font-weight: 600;
+  margin-bottom: 5rem;
+  text-align: center;
+}
+
+.episode-title {
+  font-family: "Saira Extra Condensed", sans-serif;
+  font-size: 250%;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 7rem;
+  transform: scale(1, 1.5);
+  text-align: center;
+}
+
+.content p {
+  font-weight: 700;
+  line-height: 1.33;
+  margin-bottom: 4rem;
+  text-align: justify;
+}
+
+.volume {
+  background: transparent;
+  border: 0;
+  bottom: 25px;
+  cursor: pointer;
+  left: 50px;
+  position: absolute;
+  z-index: 1000;
+}
+
+.volume p {
+  height: 24px;
+}
+
+
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: left;
+  width: fit-content !important;
+  margin-right: 5% !important;
+}
+
+
+.mobileItems {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  border-bottom: 1px solid white;
+}
+
+.mobileMenu {
+  display: none;
+  @media (max-width: 1024px) {
+    display: block;
+    z-index: 100;
+  }
+}
