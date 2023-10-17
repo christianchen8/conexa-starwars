@@ -9,7 +9,7 @@ import { Button } from "@nextui-org/react";
 
 export default function PeoplePage() {
   const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState<any[] | null>(null);
+  const [data, setData] = useState<any | null>(null);
   const [limit, setLimit] = useState(8);
   const [page, setPage] = useState(1);
   const [isAppending, setIsAppending] = useState(false);
@@ -63,10 +63,11 @@ export default function PeoplePage() {
     removeItem(itemToRemove);
   };
 
-  const inventory = data?.slice(0, limit).map((doc) => {
+  const inventory = data?.slice(0, limit).map((doc: any) => {
     const id = parseId(doc.url);
     return (
       <Card
+        key={doc.url}
         doc={doc}
         favs={items}
         handleAddItem={handleAddItem}
@@ -90,7 +91,7 @@ export default function PeoplePage() {
         setError("No se han encontrado coincidencias");
         setData(null);
       } else {
-        setError("")
+        setError("");
         setData(resData);
       }
     } catch (error) {
@@ -99,9 +100,12 @@ export default function PeoplePage() {
     }
   };
 
-  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8].map(() => {
+  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8].map((num) => {
     return (
-      <Skeleton className="bg-white h-[18.75rem] p-1 text-black relative group/card hover:border-white border cursor-pointer"></Skeleton>
+      <Skeleton
+        key={num}
+        className="bg-white h-[18.75rem] p-1 text-black relative group/card hover:border-white border cursor-pointer"
+      ></Skeleton>
     );
   });
 

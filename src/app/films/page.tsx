@@ -40,6 +40,7 @@ export default function FilmsPage() {
 
   const inventory = data?.map((doc) => (
     <Card
+      key={doc.url}
       doc={doc}
       favs={items}
       category="films"
@@ -48,9 +49,12 @@ export default function FilmsPage() {
     />
   ));
 
-  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8].map(() => {
+  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8].map((num) => {
     return (
-      <Skeleton className="bg-white h-[18.75rem] p-1 text-black relative group/card hover:border-white border cursor-pointer"></Skeleton>
+      <Skeleton
+        key={num}
+        className="bg-white h-[18.75rem] p-1 text-black relative group/card hover:border-white border cursor-pointer"
+      ></Skeleton>
     );
   });
 
@@ -60,15 +64,13 @@ export default function FilmsPage() {
         className="bg-black min-h-screen py-[5rem] w-full px-5 sm:px-10 "
         style={{ boxSizing: "border-box" }}
       >
-      
-          <div className="w-full border-b">
+        <div className="w-full border-b">
           <Fade left>
             <h1 className="uppercase text-semibold text-3xl lg:text-5xl pb-2 text-white">
               Films
             </h1>
-            </Fade>
-          </div>
-
+          </Fade>
+        </div>
 
         <div className="grid grid-col-1 sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4  w-full gap-5 mt-8 ">
           {!isLoading ? inventory : skeletons}

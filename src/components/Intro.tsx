@@ -23,6 +23,7 @@ export function Intro({ setHome }: IntroProps) {
   const { playing, setPlaying } = useAudio(url);
 
   useEffect(() => {
+    /* @ts-ignore */
     let tl = new gsap.timeline();
 
     tl.to(introRef.current, { opacity: 1, delay: 1, duration: 4.5 })

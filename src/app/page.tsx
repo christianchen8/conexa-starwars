@@ -19,6 +19,7 @@ function App() {
               {["YES", "NO"].map((answer) => {
                 return (
                   <Button
+                  key={answer}
                     size="lg"
                     variant={answer === "YES" ? "shadow" : "ghost"}
                     color="warning"
