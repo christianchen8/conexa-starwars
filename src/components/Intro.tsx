@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, Dispatch, SetStateAction, useEffect } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 import { useAudio } from "@/hooks/useAudio";
@@ -9,7 +9,7 @@ import soundOn from "../../public/icons/sound_on.svg";
 import soundOff from "../../public/icons/sound_off.svg";
 
 interface IntroProps {
-  setHome: (value: string) => void;
+  setHome: Dispatch<SetStateAction<string | null>>;
 }
 
 export function Intro({ setHome }: IntroProps) {
@@ -17,10 +17,13 @@ export function Intro({ setHome }: IntroProps) {
   const titleRef = useRef(null);
   const contentRef = useRef(null);
 
-  const url =
-    "https://ia801501.us.archive.org/23/items/StarWars_20180709/Star%20Wars.mp3";
+  const url = `${process.env.NEXT_PUBLIC_AUDIO_URL}`;
 
   const { playing, setPlaying } = useAudio(url);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+  }, []);
 
   useEffect(() => {
     /* @ts-ignore */

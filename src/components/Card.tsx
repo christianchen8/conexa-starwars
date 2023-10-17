@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface FilmCardProps {
   doc: any;
@@ -29,7 +30,8 @@ export function Card({
   };
 
   return (
-    <div
+    <Link
+      href={`/${category}/${id}`}
       key={doc.episode_id ? doc?.title : doc?.name}
       className={`${cardContainer}`}
     >
@@ -38,7 +40,9 @@ export function Card({
           fill
           alt={doc.episode_id ? doc?.title : doc?.name}
           src={`/images/${category}/${category}_${doc.episode_id ?? id}.jpeg`}
-          className={doc.episode_id ? "object-cover" : "object-cover object-top"}
+          className={
+            doc.episode_id ? "object-cover" : "object-cover object-top"
+          }
         />
       </div>
 
@@ -61,6 +65,6 @@ export function Card({
           {doc.episode_id ? doc?.title : doc?.name}
         </h1>
       </div>
-    </div>
+    </Link>
   );
 }

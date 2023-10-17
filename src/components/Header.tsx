@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../public/sw_logo.png";
@@ -8,6 +9,9 @@ import { Turn as Hamburger } from "hamburger-react";
 
 export function Header() {
   const pathname = usePathname();
+  const [openMenu, setOpenMenu] = useState(false);
+
+  const navItems = ["films", "people", "planets", "starships"];
 
   return (
     <div
@@ -20,32 +24,55 @@ export function Header() {
       </Link>
 
       {pathname !== "/" && (
-        <div className="w-[50%] hidden lg:flex justify-end uppercase text-[100]">
-          {["films", "people", "planets", "starships"].map((items) => {
-            const samePathname = `/${items}` === pathname;
+        <>
+          <div className="w-[50%] hidden lg:flex justify-end uppercase text-[100]">
+            {navItems.map((items) => {
+              const samePathname = `/${items}` === pathname;
 
+              return (
+                <Link
+                  href={`/${items}`}
+                  key={items}
+                  className={`ml-4 cursor-pointer ${
+                    samePathname ? "text-yellow-500" : "text-white"
+                  } `}
+                >
+                  {items}
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="mobileMenu" style={{ border: "1px solid white" }}>
+            <Hamburger
+              color="white"
+              toggle={setOpenMenu}
+              toggled={openMenu}
+              size={25}
+            />
+          </div>
+        </>
+      )}
+
+      {openMenu && (
+        <div className={"menu"}>
+          <div className="border border-b-white border-[0.5px] w-full "></div>
+          {navItems.map((item) => {
             return (
               <Link
-                href={`/${items}`}
-                key={items}
-                className={`ml-4 cursor-pointer ${
-                  samePathname ? "text-yellow-500" : "text-white"
-                } `}
+                href={`/${item}`}
+                className={"mobileItems"}
+                key={item}
+                onClick={() => {
+                  setOpenMenu(false);
+                }}
               >
-                {items}
+                <h1>{item} </h1>
               </Link>
             );
           })}
         </div>
       )}
-      <div className="mobileMenu">
-        <Hamburger
-          color="white"
-          // toggle={setOpenMenu}
-          // toggled={openMenu}
-          size={25}
-        />
-      </div>
     </div>
   );
 }
