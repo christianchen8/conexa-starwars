@@ -43,7 +43,7 @@ export function Header() {
           })}
         </div>
 
-        <div className="mobileMenu" style={{ border: "1px solid white" }}>
+        <div className="mobileMenu" >
           <Hamburger
             color="white"
             toggle={setOpenMenu}
@@ -59,13 +59,13 @@ export function Header() {
               return (
                 <Link
                   href={`/${item}`}
-                  className={"mobileItems"}
+                  className="border-b py-4"
                   key={item}
                   onClick={() => {
                     setOpenMenu(false);
                   }}
                 >
-                  <h1>{item} </h1>
+                  <h1 className="text-4xl uppercase">{item} </h1>
                 </Link>
               );
             })}
