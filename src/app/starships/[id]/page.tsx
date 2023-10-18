@@ -98,7 +98,7 @@ export default function SinglePage() {
               <div className="flex capitalize flex-col md:w-2/3 mt-2 text-2xl">
                 {starshipsData.map(({ item, title }) => {
                   return (
-                    <h1>
+                    <h1 key={item}>
                       <strong>{title}: </strong>{" "}
                       <span className="text-white">{item}</span>
                     </h1>
