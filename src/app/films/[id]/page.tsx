@@ -32,24 +32,24 @@ export default function SinglePage() {
   const filmsData = [
     {
       title: "episode",
-      item: data.episode_id,
+      item: data?.episode_id,
     },
     {
       title: "release date",
-      item: data.release_date,
+      item: data?.release_date,
     },
     {
       title: "director",
-      item: data.director,
+      item: data?.director,
     },
     {
       title: "producer",
-      item: data.producer,
+      item: data?.producer,
     },
 
     {
       title: "description",
-      item: data.opening_crawl,
+      item: data?.opening_crawl,
     },
     ,
   ];
