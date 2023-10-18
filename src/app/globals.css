@@ -2,59 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body,
-div,
-h1,
-h2,
-p,
-section,
-audio {
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: 24px;
-}
-
-.container {
-  height: 100vh;
-  /* overflow: hidden; */
-}
-
 .intro {
-  left: 50%;
+  left: 0;
   opacity: 0;
   position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  top: 40%;
   z-index: 200;
   overflow: hidden;
 }
 
 .intro p {
   color: rgb(75, 213, 238);
-  font-size: 1.25rem;
+  font-size: 2rem;
   overflow: hidden;
 }
 
-.intro,
 .title {
+  top: 50%;
   left: 50%;
   opacity: 0;
+  z-index: 200;
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 50%;
-  z-index: 200;
   font-family: var(--font-saira-extra-condensed);
 }
 
 .title {
-  align-items: center;
+  width: 20rem;
   display: flex;
+  align-items: center;
   justify-content: center;
-  width: 18rem;
 }
 
 .container:before {
@@ -69,10 +50,11 @@ html {
   content: " ";
   left: 0;
   right: 0;
-  position: absolute;
   top: 250px;
+  width: 100%;
   z-index: 100;
   overflow: hidden;
+  position: absolute;
 }
 
 .crawl {
@@ -83,12 +65,12 @@ html {
   position: absolute;
   transform: translateX(-50%) perspective(300px) rotateX(28deg);
   transform-origin: 50% 100%;
-  width: 90%;
+  width: 70%;
 }
 
 .content {
-  position: absolute;
   top: 100%;
+  position: absolute;
 }
 
 .episode-number {
@@ -128,8 +110,6 @@ html {
   height: 24px;
 }
 
-
-
 .swiper {
   width: 100%;
   height: 100%;
@@ -140,7 +120,6 @@ html {
   width: fit-content !important;
   margin-right: 5% !important;
 }
-
 
 .mobileItems {
   display: flex;
@@ -153,7 +132,6 @@ html {
 
 .mobileMenu {
   display: none;
-
 }
 
 .menu {
@@ -168,7 +146,6 @@ html {
   display: flex;
   flex-direction: column;
   padding: 12vh 1rem;
-
 }
 
 .mobileItems {
@@ -184,5 +161,25 @@ html {
     display: inline;
     z-index: 100;
   }
+}
 
+@media (max-width: 768px) {
+  .intro {
+    padding: 0 10px;
+  }
+  .intro p {
+    font-size: 1.5rem;
+  }
+
+  .crawl {
+    font-size: 200%;
+    width: 90%;
+  }
+
+  .episode-number {
+    margin-bottom: 3rem;
+  }
+  .episode-title {
+    font-size: 150%;
+  }
 }

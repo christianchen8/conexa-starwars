@@ -9,7 +9,7 @@ export function Skeletons() {
         return (
           <Skeleton
             key={num}
-            className="bg-white h-[18.75rem] p-1 text-black relative group/card hover:border-white border cursor-pointer"
+            className="bg-white h-[30rem] p-1 text-black relative group/card hover:border-white border cursor-pointer"
           />
         );
       })}

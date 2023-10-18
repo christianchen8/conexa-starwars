@@ -10,9 +10,9 @@ export interface RootContainerProps {
 export function RootContainer({ children }: RootContainerProps) {
   return (
     <NextUIProvider>
-      <div className="relative w-full h-full ">
+      <div className="relative w-full h-full bg-space">
         <Header />
-        <div className=" xl:px-8 h-full w-full flex items-center justify-center bg-black text-yellow-500 font-open-sans font-normal">
+        <div className="h-full w-full flex items-center justify-center text-yellow-500 font-open-sans font-normal">
           {children}
         </div>
       </div>

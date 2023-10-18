@@ -3,19 +3,23 @@ import gsap from "gsap";
 import Image from "next/image";
 import { useAudio } from "@/hooks/useAudio";
 
+import { useRouter } from "next/navigation";
+
 // Assets
 import logo from "../../public/sw_logo.png";
 import soundOn from "../../public/icons/sound_on.svg";
 import soundOff from "../../public/icons/sound_off.svg";
 
 interface IntroProps {
-  setHome: Dispatch<SetStateAction<string | null>>;
+  setHome: Dispatch<SetStateAction<boolean>>;
 }
 
 export function Intro({ setHome }: IntroProps) {
   const introRef = useRef(null);
   const titleRef = useRef(null);
   const contentRef = useRef(null);
+
+  const router = useRouter();
 
   const url = `${process.env.NEXT_PUBLIC_AUDIO_URL}`;
 
@@ -53,12 +57,12 @@ export function Intro({ setHome }: IntroProps) {
   useEffect(() => {
     setTimeout(() => {
       setPlaying(false);
-      setHome("home");
-    }, 90000);
+      router.push("/home");
+    }, 86000);
   }, []);
 
   return (
-    <div className="container bg-space">
+    <div className="container w-full h-screen">
       <section className="intro" ref={introRef}>
         <p>
           Not a long time ago, in a city
@@ -96,11 +100,12 @@ export function Intro({ setHome }: IntroProps) {
         type="button"
         onClick={() => setPlaying(!playing)}
       >
-        {playing ? (
-          <Image src={soundOn} alt="Volume is on" width={20} height={20} />
-        ) : (
-          <Image src={soundOff} alt="Volume is on" width={20} height={20} />
-        )}
+        <Image
+          src={playing ? soundOn : soundOff}
+          alt="Volume"
+          width={20}
+          height={20}
+        />
       </button>
     </div>
   );

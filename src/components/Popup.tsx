@@ -1,12 +1,15 @@
 import { Dispatch, SetStateAction } from "react";
 import { Button } from "@nextui-org/react";
 import Fade from "react-reveal/Fade";
+import { useRouter } from "next/navigation";
 
 interface PopupProp {
-  setHome: Dispatch<SetStateAction<string | null>>;
+  setHome: Dispatch<SetStateAction<boolean>>;
 }
 
 export function Popup({ setHome }: PopupProp) {
+  const router = useRouter();
+
   return (
     <div className="w-full h-screen flex justify-center items-center">
       <Fade>
@@ -23,7 +26,13 @@ export function Popup({ setHome }: PopupProp) {
                   variant={answer === "YES" ? "shadow" : "ghost"}
                   color="warning"
                   className="mx-2 font-bold"
-                  onClick={() => setHome(answer === "YES" ? "intro" : "home")}
+                  onClick={() => {
+                    if (answer === "YES") {
+                      setHome(true);
+                    } else {
+                      router.push("/home");
+                    }
+                  }}
                 >
                   {answer}
                 </Button>

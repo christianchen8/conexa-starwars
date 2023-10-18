@@ -1,10 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import Fade from "react-reveal/Fade";
-import { PageTitle } from "@/components";
+import { PageTitle, Breadcrumb } from "@/components";
 import { usePathname } from "next/navigation";
 import { CircularProgress } from "@nextui-org/react";
 
@@ -30,63 +29,73 @@ export default function SinglePage() {
     getItem();
   }, []);
 
+  const peopleData = [
+    {
+      title: "mass",
+      item: data?.mass,
+    },
+    ,
+    {
+      title: "gender",
+      item: data?.gender,
+    },
+    {
+      title: "height",
+      item: data?.height,
+    },
+    {
+      title: "birth year",
+      item: data?.birth_year,
+    },
+    {
+      title: "eye color",
+      item: data?.eye_color,
+    },
+    {
+      title: "skin color",
+      item: data?.skin_color,
+    },
+
+    {
+      title: "hair color",
+      item: data?.hair_color,
+    },
+
+    ,
+  ];
+
   return (
     <Fade>
       <div
-        className="bg-black min-h-screen py-[5rem] w-full px-5 sm:px-10  "
+        className="backdrop-blur-sm	min-h-screen py-[8rem] w-full px-5 sm:px-10 xl:px-20 "
         style={{ boxSizing: "border-box" }}
       >
         {isLoading ? (
-          <CircularProgress color="warning"></CircularProgress>
+          <CircularProgress color="warning" size="lg" />
         ) : (
           <>
-            <div className="capitalize text-white mb-4">
-              <h1>
-                Home / <Link href={`/${category}`}>{category} </Link> /{" "}
-                <span className="text-yellow-500">{data?.name} </span>
-              </h1>
-            </div>
-
+            <Breadcrumb title={data?.name} category={category} />
             <PageTitle title={data?.name} />
 
             <div className="flex md:flex-row flex-col justify-between min-h-[28rem] mt-8">
-              <div className=" md:w-[18rem] h-[20rem] md:h-[25rem] bg-white p-4 relative flex justify-start ">
+              <div className=" sm:w-[25rem] h-[30rem] md:h-[35rem] bg-white p-4 relative flex justify-start ">
                 <Image
                   src={`/images/${category}/${category}_${id}.jpeg`}
                   alt="image"
                   fill
-                  className="object-contain"
                 />
               </div>
-
-              <div className="flex flex-col md:w-1/2 mt-2">
-                <h1>
-                  Height: <span className="text-white">{data?.height}</span>
-                </h1>
-                <h1>
-                  Eye Color: <span className="text-white">{data?.eye_color}</span>
-                </h1>
-                <h1>
-                  Skin color:{" "}
-                  <span className="text-white">{data?.skin_color} </span>
-                </h1>
-                <h1>
-                  Mass:{" "}
-                  <span className="text-white">{data?.mass}</span>
-                </h1>
-                <h1>
-                  Hair color:{" "}
-                  <span className="text-white">{data?.hair_color}</span>
-                </h1>
-                <h1>
-                  Birth year:{" "}
-                  <span className="text-white">{data?.birth_year}</span>
-                </h1>
-                <h1>
-                Gender:{" "}
-                  <span className="text-white">{data?.gender}</span>
-                </h1>
+              <div className="flex capitalize flex-col md:w-2/3 mt-2 text-2xl">
+                {peopleData.map(({ item, title }) => {
+                  return (
+                    <h1>
+                      <strong>{title}: </strong>{" "}
+                      <span className="text-white">{item}</span>
+                    </h1>
+                  );
+                })}
               </div>
+
             </div>
           </>
         )}

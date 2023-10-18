@@ -1,10 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import Fade from "react-reveal/Fade";
-import { PageTitle } from "@/components";
+import { PageTitle, Breadcrumb } from "@/components";
 import { usePathname } from "next/navigation";
 import { CircularProgress } from "@nextui-org/react";
 
@@ -30,27 +29,43 @@ export default function SinglePage() {
     getItem();
   }, []);
 
+  const filmsData = [
+    {
+      title: "episode",
+      item: data?.episode_id,
+    },
+    {
+      title: "release date",
+      item: data?.release_date,
+    },
+    {
+      title: "director",
+      item: data?.director,
+    },
+    {
+      title: "producer",
+      item: data?.producer,
+    },
+
+    {
+      title: "description",
+      item: data?.opening_crawl,
+    },
+    ,
+  ];
+
   return (
     <Fade>
-      <div
-        className="bg-black min-h-screen py-[5rem] w-full px-5 sm:px-10  "
-        style={{ boxSizing: "border-box" }}
-      >
+      <div className="backdrop-blur-sm	min-h-screen py-[8rem] w-full px-5 sm:px-10 xl:px-20  ">
         {isLoading ? (
-          <CircularProgress color="warning"></CircularProgress>
+          <CircularProgress color="warning" size="lg" />
         ) : (
           <>
-            <div className="capitalize text-white mb-4">
-              <h1>
-                Home / <Link href={`/${category}`}>{category} </Link> /{" "}
-                <span className="text-yellow-500">{data?.title} </span>
-              </h1>
-            </div>
-
+            <Breadcrumb title={data?.title} category={category} />
             <PageTitle title={data?.title} />
 
             <div className="flex md:flex-row flex-col justify-between min-h-[28rem] mt-8">
-              <div className=" md:w-[18rem] h-[20rem] md:h-[25rem] bg-white p-4 relative flex justify-start ">
+              <div className=" sm:w-[25rem] h-[30rem] md:h-[35rem] bg-white p-4 relative flex justify-start ">
                 <Image
                   src={`/images/${category}/${category}_${data?.episode_id}.jpeg`}
                   alt="image"
@@ -58,26 +73,17 @@ export default function SinglePage() {
                 />
               </div>
 
-              <div className="flex flex-col md:w-1/2 mt-2">
-                <h1>
-                  Director: <span className="text-white">{data?.director}</span>
-                </h1>
-                <h1>
-                  Producer: <span className="text-white">{data?.producer}</span>
-                </h1>
-                <h1>
-                  Release Date:{" "}
-                  <span className="text-white">{data?.release_date} </span>
-                </h1>
-                <h1>
-                  Episode:{" "}
-                  <span className="text-white">{data?.episode_id}</span>
-                </h1>
-                <h1>
-                  Description:{" "}
-                  <span className="text-white">{data?.opening_crawl}</span>
-                </h1>
+              <div className="flex capitalize flex-col md:w-2/3 mt-2 text-2xl">
+                {filmsData.map(({ item, title }) => {
+                  return (
+                    <h1>
+                      <strong>{title}: </strong>{" "}
+                      <span className="text-white">{item}</span>
+                    </h1>
+                  );
+                })}
               </div>
+              
             </div>
           </>
         )}

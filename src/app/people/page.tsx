@@ -53,8 +53,7 @@ export default function PeoplePage() {
   return (
     <Fade>
       <div
-        className="bg-black min-h-screen py-[5rem] w-full px-5 sm:px-10  "
-        style={{ boxSizing: "border-box" }}
+        className="backdrop-blur-sm	 min-h-screen py-[8rem] w-full px-5 sm:px-10 xl:px-20  "
       >
         <PageTitle title="people" />
 
@@ -64,7 +63,7 @@ export default function PeoplePage() {
               type="text"
               name="search"
               placeholder="Buscar por nombre..."
-              className="w-full px-2 bg-black"
+              className="w-full p-2 bg-black"
               onChange={(e) => setSearch(e.target.value)}
             />
             <button

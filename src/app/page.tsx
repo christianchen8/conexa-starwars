@@ -5,13 +5,11 @@ import { Intro } from "@/components/Intro";
 import { Popup } from "@/components/Popup";
 
 function App() {
-  const [home, setHome] = useState<string | null>(null);
+  const [home, setHome] = useState<boolean>(false);
 
   return (
     <div className="bg-space w-full">
-      {!home && <Popup setHome={setHome} />}
-      {home === "intro" && <Intro setHome={setHome} />}
-      {home === "home" && <Home />}
+      {!home ? <Popup setHome={setHome} /> : <Intro setHome={setHome} />}
     </div>
   );
 }

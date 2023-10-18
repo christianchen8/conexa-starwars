@@ -41,10 +41,7 @@ export default function FilmsPage() {
 
   return (
     <Fade>
-      <div
-        className="bg-black min-h-screen py-[5rem] w-full px-5 sm:px-10 "
-        style={{ boxSizing: "border-box" }}
-      >
+      <div className="bg-space min-h-screen py-[8rem] w-full px-5 sm:px-10 xl:px-20 ">
         <PageTitle title="films" />
 
         <div className="grid grid-col-1 sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4  w-full gap-5 mt-8 ">
