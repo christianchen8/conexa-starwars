@@ -89,7 +89,7 @@ export default function SinglePage() {
               </div>
 
               <div className="flex capitalize flex-col md:w-2/3 mt-2 text-2xl">
-                {planetsData.map(({ item, title }) => {
+                {planetsData.map(({ item, title }: any) => {
                   return (
                     <h1 key={item}>
                       <strong>{title}: </strong>{" "}

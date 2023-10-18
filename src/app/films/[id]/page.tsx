@@ -32,24 +32,24 @@ export default function SinglePage() {
   const filmsData = [
     {
       title: "episode",
-      item: data?.episode_id,
+      item: data.episode_id,
     },
     {
       title: "release date",
-      item: data?.release_date,
+      item: data.release_date,
     },
     {
       title: "director",
-      item: data?.director,
+      item: data.director,
     },
     {
       title: "producer",
-      item: data?.producer,
+      item: data.producer,
     },
 
     {
       title: "description",
-      item: data?.opening_crawl,
+      item: data.opening_crawl,
     },
     ,
   ];
@@ -74,7 +74,7 @@ export default function SinglePage() {
               </div>
 
               <div className="flex capitalize flex-col md:w-2/3 mt-2 text-2xl">
-                {filmsData.map(({ item, title }) => {
+                {filmsData.map(({ item, title }: any) => {
                   return (
                     <h1 key={item}>
                       <strong>{title}: </strong>{" "}
@@ -83,7 +83,6 @@ export default function SinglePage() {
                   );
                 })}
               </div>
-              
             </div>
           </>
         )}
